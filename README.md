@@ -1,5 +1,5 @@
 # Prestige Hash Checker
-PRESTIGE TECH — by Dominik Wasilak — v0.1.0
+PRESTIGE TECH — by Dominik Wasilak — v0.2.0
 
 Generowanie i weryfikacja manifestów oraz wykrywanie nowych, zmienionych i brakujących plików.
 

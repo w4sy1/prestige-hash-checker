@@ -32,7 +32,7 @@ def compare(before,after):
 
 def build():
     p=parser('Hashe i manifesty. SHA1/MD5 tylko kompatybilność.')
-    p.add_argument('command',nargs='?',choices=['file','generate','verify','compare'])
+    p.add_argument('command',nargs='?',choices=['file','generate','verify','compare','compare-folders'])
     p.add_argument('--root');p.add_argument('--file');p.add_argument('--manifest');p.add_argument('--other')
     p.add_argument('--algorithm',choices=ALGORITHMS,default='sha256')
     return p
@@ -50,6 +50,9 @@ def handle(a):
     if a.command=='verify':
         if not a.root or not a.manifest:raise ValueError('Podaj --root i --manifest.')
         before=validate(read_json(a.manifest));return compare(before,manifest(a.root,before['algorithm']))
+    if a.command=='compare-folders':
+        if not a.root or not a.other:raise ValueError('Podaj --root i --other jako foldery.')
+        return compare(manifest(a.root,a.algorithm),manifest(a.other,a.algorithm))
     if a.command=='compare':
         if not a.manifest or not a.other:raise ValueError('Podaj dwa manifesty.')
         return compare(read_json(a.manifest),read_json(a.other))

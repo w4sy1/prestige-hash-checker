@@ -1,3 +1,9 @@
+# Changelog
+
+## 0.2.0 — 2026-09-14
+
+Bezpośrednie porównanie folderów bez zapisywania manifestów pośrednich.
+
 # Historia zmian
 
 ## 0.1.0

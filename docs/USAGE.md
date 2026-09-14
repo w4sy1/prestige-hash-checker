@@ -9,3 +9,9 @@ Manifest zapisuj poza katalogiem badanym; nie nadpisuje istniejącego manifestu.
 Symlinki i junctions są pomijane. Brak dostępu przerywa tworzenie, zamiast udawać kompletny manifest.
 Porównanie bazuje na zawartości, nie samej dacie. Nie odczytuje ścieżek spoza jawnie wskazanego root.
 Manifest nie jest podpisany; jego autentyczność zależy od bezpiecznego przechowywania.
+
+## Rozszerzenia 0.2.0
+
+`python app.py compare-folders --root "C:/pierwszy" --other "C:/drugi" --algorithm sha256`
+porównuje względne ścieżki i hashe, pokazując nowe, brakujące, zmienione i identyczne pliki.
+Różnice zwracają kod 2. Operacja wyłącznie odczytuje oba katalogi.
