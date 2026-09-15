@@ -32,12 +32,17 @@ def compare(before,after):
 
 def build():
     p=parser('Hashe i manifesty. SHA1/MD5 tylko kompatybilność.')
-    p.add_argument('command',nargs='?',choices=['file','generate','verify','compare','compare-folders'])
+    p.add_argument('command',nargs='?',choices=['keygen','sign','verify-signature','file','generate','verify','compare','compare-folders'])
     p.add_argument('--root');p.add_argument('--file');p.add_argument('--manifest');p.add_argument('--other')
     p.add_argument('--algorithm',choices=ALGORITHMS,default='sha256')
+    from signing import add_arguments
+    add_arguments(p)
     return p
 
 def handle(a):
+    if a.command in ('keygen','sign','verify-signature'):
+        from signing import handle as signing_handle
+        return signing_handle(a,a.manifest)
     if a.command=='file':
         if not a.file:raise ValueError('Podaj --file.')
         return {'algorithm':a.algorithm,'hash':digest(a.file,a.algorithm)}
